@@ -5,9 +5,10 @@
 # sudo dnf install parallel
 # sudo pip install awscli
 # also assumes account is configured via $(aws config)
+# split --bytes=268435456 --verbose my-backup.tar.gz part
 
 # bytesize has to be a power of 2 (max 4 GB)
-byteSize=4194304
+byteSize=268435456
 vaultName='media1'
 archiveDescription='November 2015 Pictures and Videos'
 
