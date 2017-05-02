@@ -6,6 +6,7 @@
 # sudo pip install awscli
 # also assumes account is configured via $(aws config)
 
+# bytesize has to be a power of 2 (max 4 GB)
 byteSize=4194304
 vaultName='media1'
 archiveDescription='November 2015 Pictures and Videos'
@@ -18,7 +19,7 @@ echo "Total parts to upload: " $fileCount
 files=$(ls | grep "^part")
 
 # initiate multipart upload connection to glacier
-init=$(aws glacier initiate-multipart-upload --account-id - --part-size $byteSize --vault-name $vaultName --archive-description $archiveDescription)
+init=$(aws glacier initiate-multipart-upload --account-id - --part-size $byteSize --vault-name $vaultName --archive-description "$archiveDescription")
 
 echo "---------------------------------------"
 # xargs trims off the quotes
