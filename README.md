@@ -3,14 +3,13 @@ Script for uploading large files to AWS Glacier
 
 The script ice.sh builds off the original code to automate the file splitting.
 You call it like this (assuming ice.sh is in your PATH)
+```
 ice.sh -v backups -d <description> -f <file> 
+```
 
 Helpful AWS Glacier pages:
  - <a href="http://docs.aws.amazon.com/cli/latest/userguide/cli-using-glacier.html#cli-using-glacier-initiate">Using Amazon Glacier with the AWS Command Line Interface</a>
  - <a href="http://docs.aws.amazon.com/cli/latest/reference/glacier/index.html#cli-aws-glacier">AWS Glacier Command Reference</a>
-
-Running scripts in parallel:
- - <a href="https://www.gnu.org/software/parallel/parallel_tutorial.html">GNU Parallel Tutorial</a>
 
 **Motivation**
 
@@ -56,13 +55,10 @@ Before jumping into the script, verify that your connection works by describing 
     "VaultName": "media1"
     }
 
-Download the glacierupload.sh script:
+Clone this repo
+Make it `ice.sh` executable:
 
-    wget https://raw.githubusercontent.com/benporter/aws-glacier-multipart-upload/master/glacierupload.sh
-
-Make it executable:
-
-    chmod u+x glacierupload.sh
+    chmod u+x ice.sh
 
 **Script Usage**
 
@@ -70,12 +66,10 @@ Tar and zip the files you want to upload:
 
     tar -zcvf my-backup.tar.gz /location/to/zip/*
 
-Now chunk out your zipped file into equal peice chunks.  You can only pick multiples of 1MB up to 4MB.  This example chunks out the <i>my-backup.tar.gz</i> file into 4MB chunks, giving all of them the prefix <i>part</i> which is what the script expects to see.  If you choose something other than <i>part</i>, then you'll need to edit the script.
+Now it is time to run the script.  
 
-    split --bytes=4194304 --verbose my-backup.tar.gz part
-
-Now it is time to run the script.  It assumes that your <i>part*</i> files are in the same directory as the script.
-
-    ./glacierupload.sh
+```
+ice.sh -v backups -d <description> -f <file> 
+```
 
 
