@@ -1,6 +1,10 @@
 # aws-glacier-multipart-upload
 Script for uploading large files to AWS Glacier
 
+The script ice.sh builds off the original code to automate the file splitting.
+You call it like this (assuming ice.sh is in your PATH)
+ice.sh -v backups -d <description> -f <file> 
+
 Helpful AWS Glacier pages:
  - <a href="http://docs.aws.amazon.com/cli/latest/userguide/cli-using-glacier.html#cli-using-glacier-initiate">Using Amazon Glacier with the AWS Command Line Interface</a>
  - <a href="http://docs.aws.amazon.com/cli/latest/reference/glacier/index.html#cli-aws-glacier">AWS Glacier Command Reference</a>
