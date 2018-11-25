@@ -60,7 +60,7 @@ for f in $files
 #   -a commands.txt runs every line of that file in parallel, in potentially random order
 #   --notice supresses citation output to the console
 #   --bar provides a command line progress bar
-parallel --load 100% -a commands.txt --no-notice --bar
+parallel --gnu --load 100% -a commands.txt --no-notice --bar
 
 echo "List Active Multipart Uploads:"
 echo "Verify that a connection is open:"
